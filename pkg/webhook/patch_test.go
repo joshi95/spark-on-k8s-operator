@@ -19,6 +19,7 @@ package webhook
 import (
 	"encoding/json"
 	"fmt"
+	kubeclientfake "k8s.io/client-go/kubernetes/fake"
 	"testing"
 
 	jsonpatch "github.com/evanphx/json-patch"
@@ -1792,7 +1793,8 @@ func TestPatchSparkPod_Lifecycle(t *testing.T) {
 }
 
 func getModifiedPod(pod *corev1.Pod, app *v1beta2.SparkApplication) (*corev1.Pod, error) {
-	patchOps := patchSparkPod(pod.DeepCopy(), app)
+	fakeClient := kubeclientfake.NewSimpleClientset()
+	patchOps := patchSparkPod(pod.DeepCopy(), app, fakeClient)
 	patchBytes, err := json.Marshal(patchOps)
 	if err != nil {
 		return nil, err

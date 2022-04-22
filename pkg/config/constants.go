@@ -19,7 +19,7 @@ package config
 const (
 	// DefaultSparkConfDir is the default directory for Spark configuration files if not specified.
 	// This directory is where the Spark ConfigMap is mounted in the driver and executor containers.
-	DefaultSparkConfDir = "/etc/spark/conf"
+	DefaultSparkConfDir = "/opt/spark/conf"
 	// SparkConfigMapVolumeName is the name of the ConfigMap volume of Spark configuration files.
 	SparkConfigMapVolumeName = "spark-configmap-volume"
 	// DefaultHadoopConfDir is the default directory for Spark configuration files if not specified.
